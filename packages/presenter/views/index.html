@@ -1,0 +1,68 @@
+<template name="index">
+    <div class="container-fluid">
+        <nav class="row">
+            <div class="container">
+                <div class="col-xs-12">
+                    <h1>gdzie-zamieszkam</h1>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> offersList}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="offersList">
+    {{#each offers}}
+        {{> offer}}
+    {{/each}}
+
+    <div class="pagination">
+        <button id="loadMore">
+            Pokaż więcej
+        </button>
+    </div>
+</template>
+
+<template name="offer">
+    <article class="offer">
+        <div class="offerContainer">
+            <section class="image">
+                {{> offerImage src=firstPicture}}
+            </section>
+            <section class="content">
+                <h1><a href="{{url}}" target="_blank">{{title}}</a></h1>
+                <h2>
+                    {{area}}&nbsp;m<sup>2</sup>,
+                    {{roomCount}}&nbsp;pokoi
+                </h2>
+                <div class="description">
+                    {{{description}}}
+                </div>
+            </section>
+            <section class="special">
+                <span class="price">{{price}}&nbsp;zł</span>
+            </section>
+        </div>
+    </article>
+</template>
+
+<template name="offerImage">
+    <div class="offerImage">
+        <img src="{{src}}" />
+    </div>
+</template>
+
+<template name="map">
+    <div id="map-container">
+    </div>
+</template>
