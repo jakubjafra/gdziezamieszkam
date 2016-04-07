@@ -15,6 +15,14 @@ Package.onUse(function (api) {
         'data-base'
     ]);
 
+    api.use([
+        'rgnevashev:bootstrap-slider'
+    ]);
+
+    api.use([
+        'tmeasday:publish-counts'
+    ], ['server', 'client']);
+
     // ~~~
 
     api.addFiles([

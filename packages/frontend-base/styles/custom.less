@@ -1,6 +1,6 @@
 @import "./bootstrap/custom.bootstrap.import.less";
 
-@yellow: yellow;
+@main-color: lighten(lightgreen, 5%);
 
 #map-container {
     position: absolute;
@@ -15,9 +15,30 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-nav {
+.text-center {
+    text-align: center;
+}
+
+.text-brand {
+    background-color: @main-color;
+    padding: 0.2em;
+}
+
+#filters {
     background-color: @gray-lighter;
     margin-bottom: 15px;
+    padding: 15px 0;
+
+    .filterItems > div {
+        padding-bottom: 5px;
+    }
+}
+
+nav {
+    h1 > span {
+        background-color: @main-color;
+        padding: 0.2em;
+    }
 }
 
 a {
@@ -28,10 +49,58 @@ a {
     }
 }
 
+label {
+    font-size: 1.2em;
+}
+
+.sliderContainer {
+    position: relative;
+    padding: 35px 20px 0;
+
+    .slider {
+        &.slider-horizontal {
+            width: 100% !important;
+            height: 16px !important;
+        }
+
+        .slider-track {
+            height: 7px !important;
+            background: @gray-lighter;
+            border: 1px solid lighten(@gray-light, 20%);
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .slider-selection {
+            background: @main-color;
+            box-shadow: none;
+        }
+
+        .slider-handle {
+            margin-left: -5px !important;
+            margin-top: -5px !important;
+            width: 7px;
+            height: 14px;
+            border-radius: 1px !important;
+            border: 1px solid lighten(@gray-light, 20%);
+            background: lighten(@gray-lighter, 5%);
+            box-shadow: none;
+
+            &.min-slider-handle {
+                cursor: e-resize;
+            }
+
+            &.max-slider-handle {
+                cursor: w-resize;
+            }
+        }
+    }
+}
+
 // ~~~
 
 article.offer {
-    padding: 15px 0;
+    padding: 15px;
     border-bottom: 1px solid @gray-lighter;
 
     .offerContainer {
@@ -64,7 +133,7 @@ article.offer {
 
         a {
             text-decoration: none;
-            background-color: @yellow;
+            background-color: @main-color;
             padding: 0.2em;
         }
     }
