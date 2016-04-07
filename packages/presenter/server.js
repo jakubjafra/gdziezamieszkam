@@ -13,7 +13,7 @@ Meteor.publish("offers", function(filters, limit){
     if(filters.area !== undefined) query.$and.push({ 'area': filters.area });
 
     if(filters.hideEstateAgency === true) query.$and.push({ 'vendorType': { $ne: 2 } });
-    if(filters.hideNoPictures === true) query.$and.push({ 'pictures': { $exists: true, $ne: [] } });
+    if(filters.hideNoPictures === true) query.$and.push({ 'pictures.0': { $ne: null } });
 
     Counts.publish(this, "offers-filtered-count", Offers.find(query));
 
