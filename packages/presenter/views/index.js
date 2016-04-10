@@ -258,6 +258,20 @@ let filters = new ReactiveVar({});
     Template.offer.helpers({
         'firstPicture': function(){
             return this.pictures[0];
+        },
+        'niceRoomCount': function(count){
+            switch(count){
+                case 1:
+                    return "Kawalerka";
+
+                case 2:
+                case 3:
+                case 4:
+                    return `${count} pokoje`;
+
+                default:
+                    return `${count} pokoi`;
+            }
         }
     });
 })();
