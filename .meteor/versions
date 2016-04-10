@@ -1,3 +1,5 @@
+accounts-always@0.0.0
+accounts-base@1.2.5
 allow-deny@1.0.3
 autoupdate@1.2.7
 babel-compiler@6.6.1
@@ -16,6 +18,7 @@ data-base@0.0.0
 ddp@1.2.4
 ddp-client@1.2.4
 ddp-common@1.2.4
+ddp-rate-limiter@1.0.3
 ddp-server@1.2.5
 deps@1.0.11
 diff-sequence@1.0.4
@@ -45,6 +48,7 @@ jquery@1.11.7
 launch-screen@1.0.10
 less@2.5.7
 livedata@1.0.17
+localstorage@1.0.8
 logging@1.0.11
 meteor@1.1.13
 meteor-base@1.0.3
@@ -67,6 +71,7 @@ ordered-dict@1.0.6
 presenter@0.0.0
 promise@0.6.6
 random@1.0.8
+rate-limit@1.0.3
 reactive-dict@1.1.6
 reactive-var@1.0.8
 reload@1.1.7
@@ -74,6 +79,7 @@ retry@1.0.6
 rgnevashev:bootstrap-slider@6.0.17
 routepolicy@1.0.9
 scraper@0.0.0
+service-configuration@1.0.8
 session@1.1.4
 spacebars@1.0.10
 spacebars-compiler@1.0.10
