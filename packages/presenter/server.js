@@ -6,7 +6,7 @@ Meteor.publish("offers", function(filters, limit){
         ]
     };
 
-    Counts.publish(this, "offers-all-count", Offers.find(query));
+    Counts.publish(this, "offers-all", Offers.find(query));
 
     if(filters.price !== undefined) query.$and.push({ 'price': filters.price });
     if(filters.roomCount !== undefined) query.$and.push({ 'roomCount': filters.roomCount });
@@ -15,10 +15,13 @@ Meteor.publish("offers", function(filters, limit){
     if(filters.hideEstateAgency === true) query.$and.push({ 'vendorType': { $ne: 2 } });
     if(filters.hideNoPictures === true) query.$and.push({ 'pictures.0': { $ne: null } });
 
-    Counts.publish(this, "offers-filtered-count", Offers.find(query));
+    Counts.publish(this, "offers-filtered", Offers.find(query));
 
     return Offers.find(query, {
-        limit: limit
+        limit: limit,
+        sort: {
+            price: 1
+        }
     });
 });
 

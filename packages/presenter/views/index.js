@@ -222,13 +222,9 @@ let filters = new ReactiveVar({});
 
     Template.filters.helpers({
         'counts': () => {
-            console.log({
-                filtered: Counts.get("offers-filtered-count"),
-                total: Counts.get("offers-all-count")
-            });
             return {
-                filtered: Counts.get("offers-filtered-count"),
-                total: Counts.get("offers-all-count")
+                filtered: Counts.get("offers-filtered"),
+                total: Counts.get("offers-all")
             };
         }
     });
@@ -244,7 +240,11 @@ let filters = new ReactiveVar({});
     });
 
     Template.offersList.helpers({
-        'offers': () => Offers.find({})
+        'offers': () => Offers.find({}, {
+            sort: {
+                price: 1
+            }
+        })
     });
 
     Template.offersList.events({
