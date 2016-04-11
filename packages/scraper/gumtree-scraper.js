@@ -123,3 +123,13 @@ Meteor.methods({
         return offer;
     }
 });
+
+SyncedCron.add({
+    name: 'scrap-gumtree',
+    schedule: function(parser){
+        return parser.text('at 9:00 pm');
+    },
+    job: function() {
+        Meteor.call("scrap-gumtree")
+    }
+});

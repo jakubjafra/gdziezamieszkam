@@ -12,7 +12,9 @@ Package.onUse(function (api) {
         'ecmascript',
         'http',
         'momentjs:moment',
-        'froatsnook:sleep'
+        'froatsnook:sleep',
+        'random',
+        'percolate:synced-cron'
     ]);
 
     api.use([

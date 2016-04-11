@@ -120,3 +120,13 @@ Meteor.methods({
         return offer;
     }
 });
+
+SyncedCron.add({
+    name: 'scrap-olx',
+    schedule: function(parser){
+        return parser.text('at 9:00 am');
+    },
+    job: function() {
+        Meteor.call("scrap-olx")
+    }
+});
