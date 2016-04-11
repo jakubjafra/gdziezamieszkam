@@ -242,6 +242,7 @@ let filters = new ReactiveVar({});
     Template.offersList.helpers({
         'offers': () => Offers.find({}, {
             sort: {
+                quality: -1,
                 price: 1
             }
         })

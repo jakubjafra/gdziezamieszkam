@@ -5,8 +5,7 @@ Meteor.methods({
         let currDate = moment().startOf('day').valueOf();
 
         let offerDuplicate = Offers.findOne({
-            title: offerData.title,
-            description: offerData.description
+            title: offerData.title
         });
 
         if(offerDuplicate !== undefined){
@@ -59,7 +58,10 @@ Meteor.methods({
 
         console.log("calling geocode service...");
 
+        offerData.pricePerArea = (offerData.price / offerData.area);
+        
         offerData.cords = Meteor.call("geocode-address", address);
+        offerData.quality = Meteor.call("get-offer-quality", offerData);
 
         console.log("inserting offer...");
 

@@ -26,6 +26,7 @@ Package.onUse(function (api) {
     api.addFiles([
         'connection.js',
         'server-commons.js',
+        'quality.js',
         'olx-scraper.js',
         'gumtree-scraper.js',
         'offer-handlers.js',

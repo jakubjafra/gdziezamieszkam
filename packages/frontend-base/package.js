@@ -19,6 +19,8 @@ Package.onUse(function (api) {
     // ~~~
 
     api.addFiles([
+        'handlebars.js',
+
         'config/routing.js',
         'config/head.html',
 

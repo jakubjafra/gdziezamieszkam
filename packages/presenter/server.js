@@ -20,6 +20,7 @@ Meteor.publish("offers", function(filters, limit){
     return Offers.find(query, {
         limit: limit,
         sort: {
+            quality: -1,
             price: 1
         }
     });
