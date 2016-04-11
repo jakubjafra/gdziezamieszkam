@@ -8,6 +8,12 @@ Meteor.methods({
             title: offerData.title
         });
 
+        if(offerDuplicate === undefined){
+            offerDuplicate = Offers.findOne({
+                description: offerData.description
+            });
+        }
+
         if(offerDuplicate !== undefined){
             console.log("found duplicate of offer", offerDuplicate._id);
 
