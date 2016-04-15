@@ -1,12 +1,23 @@
-Meteor.publish("offers", function(filters, limit){
-    let query = {
+function basicQuery(){
+    return {
         $and: [
             { 'lastSeen.0': { $gte: moment().startOf('day').subtract(1, 'days').valueOf() } },
             { 'address.city': "Poznań" }
         ]
     };
+}
+
+Meteor.publish("offers-counts", function(){
+    let query = basicQuery();
 
     Counts.publish(this, "offers-all", Offers.find(query));
+    // TODO: Counts.publish(this, "offers-mine", Offers.find(???));
+
+    return [];
+});
+
+Meteor.publish("offers", function(filters, limit){
+    let query = basicQuery();
 
     if(filters.price !== undefined) query.$and.push({ 'price': filters.price });
     if(filters.roomCount !== undefined) query.$and.push({ 'roomCount': filters.roomCount });

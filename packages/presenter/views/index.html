@@ -1,26 +1,30 @@
 <template name="index">
-    <nav>
-        <ul class="mainMenu">
-            <li class="active">
-                <a href="#">
-                    Wszystkie oferty
-                    <span class="badge">0</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    Zapisane
-                    <span class="badge">0</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    {{> menu}}
     <aside>
         {{> filters}}
     </aside>
     <main>
         {{> offersList}}
     </main>
+</template>
+
+<template name="menu">
+    <nav>
+        <ul class="mainMenu">
+            <li class="active">
+                <a href="#">
+                    Wszystkie oferty
+                    <span class="badge">{{getPublishedCount "offers-all"}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Zapisane
+                    <span class="badge">{{getPublishedCount "offers-mine"}}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </template>
 
 <template name="filters">
@@ -67,11 +71,11 @@
                 &nbsp;
                 <label for="hideNoPictures">Ukryj oferty bez zdjęć</label>
             </div>
-            <!--<div>-->
-                <!--<input type="checkbox" id="hideDismissed" checked="checked" />-->
-                <!--&nbsp;-->
-                <!--<label for="hideNoPictures">Ukryj odrzucone oferty</label>-->
-            <!--</div>-->
+            <div>
+                <input type="checkbox" id="showShown" />
+                &nbsp;
+                <label for="hideNoPictures">Pokaż poprzednio obejrzane oferty</label>
+            </div>
         </div>
     </section>
 </template>
