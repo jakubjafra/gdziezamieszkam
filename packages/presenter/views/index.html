@@ -1,8 +1,23 @@
 <template name="index">
     <nav>
-        <h1><span>gdziezamieszkam</span></h1>
-        {{> filters}}
+        <ul class="mainMenu">
+            <li class="active">
+                <a href="#">
+                    Wszystkie oferty
+                    <span class="badge">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Zapisane
+                    <span class="badge">0</span>
+                </a>
+            </li>
+        </ul>
     </nav>
+    <aside>
+        {{> filters}}
+    </aside>
     <main>
         {{> offersList}}
     </main>
@@ -52,6 +67,11 @@
                 &nbsp;
                 <label for="hideNoPictures">Ukryj oferty bez zdjęć</label>
             </div>
+            <!--<div>-->
+                <!--<input type="checkbox" id="hideDismissed" checked="checked" />-->
+                <!--&nbsp;-->
+                <!--<label for="hideNoPictures">Ukryj odrzucone oferty</label>-->
+            <!--</div>-->
         </div>
     </section>
 </template>

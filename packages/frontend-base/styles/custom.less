@@ -1,43 +1,36 @@
 @import "./bootstrap/custom.bootstrap.import.less";
 
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-    padding: 0;
+body {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
 }
 
 // ~~~
 
 @main-color: lighten(lightgreen, 5%);
+@secondary-color: lighten(orange, 5%);
 
-@nav-padding: 10px;
-@nav-width: 1px + 280px + @nav-padding * 2;
+// ~~~
 
-nav {
+@aside-padding: 10px;
+@aside-width: 1px + 280px + @aside-padding * 2;
+
+aside {
     position: fixed;
-    width: @nav-width - @nav-padding * 2;
+    width: @aside-width - @aside-padding * 2;
     overflow: auto;
-    height: 100%;
-    top: 0;
+    height: calc(~"100% - 50px");
+    top: 50px;
     left: 0;
-    padding: @nav-padding;
+    padding: @aside-padding;
 
     border: none;
     border-right: 1px solid @gray-lighter;
 
-    h1 {
-        margin: -@nav-padding;
-        margin-bottom: 0;
-
-        background-color: @main-color;
-        padding: @nav-padding;
-
-        font-size: 2em;
-        text-align: center;
-    }
-
     section {
         header {
             background-color: @gray-lighter;
-            margin: 0 -@nav-padding;
+            margin: 0 -@aside-padding;
             padding: 10px;
 
             font-size: 1.5em;
@@ -55,11 +48,59 @@ nav {
     }
 }
 
+@main-width: 960px;
+@main-vertical-padding: 30px;
+
 main {
-    margin-left: @nav-width;
-    padding: 10px 30px;
-    max-width: 900px;
+    margin-top: 50px;
+    margin-left: @aside-width;
+    padding: 10px @main-vertical-padding;
+    max-width: @main-width - @main-vertical-padding * 2;
 }
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border-bottom: 1px solid @gray-lighter;
+    z-index: 1000;
+
+    ul.mainMenu {
+        margin: 0;
+        margin-left: @aside-width;
+        padding: 0;
+
+        li {
+            display: inline-block;
+
+            a {
+                font-weight: bold;
+                font-size: 1.5em;
+                text-decoration: none;
+                display: inline-block;
+                padding: 10px 20px;
+                border-bottom: 4px solid transparent;
+                height: 26px;
+
+                &:hover {
+                    border-bottom-color: @main-color;
+                }
+            }
+
+            &.active {
+                a {
+                    border-bottom-color: @main-color;
+                }
+            }
+        }
+    }
+}
+
+// ~~~
 
 #map-container {
     position: absolute;
@@ -67,11 +108,6 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-}
-
-body {
-    font-size: 12px;
-    font-family: 'Roboto', sans-serif;
 }
 
 .text-center {
@@ -105,6 +141,12 @@ a {
 
 label {
     font-size: 1.2em;
+}
+
+.badge {
+    font-size: 0.8em;
+    background-color: @main-color;
+    border-radius: 0;
 }
 
 .sliderContainer {
@@ -187,8 +229,8 @@ article.offer {
 
         a {
             text-decoration: none;
-            background-color: @main-color;
-            padding: 0.2em;
+            padding: 0.05em 0;
+            border-bottom: 3px solid @main-color;
         }
     }
 
