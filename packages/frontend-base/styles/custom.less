@@ -7,8 +7,8 @@ body {
 
 // ~~~
 
-@main-color: lighten(lightgreen, 5%);
-@secondary-color: lighten(orange, 5%);
+@secondary-color: lighten(lightgreen, 5%);
+@main-color: lighten(orange, 5%);
 
 // ~~~
 
@@ -91,9 +91,21 @@ nav {
                 }
             }
 
+            &.secondary {
+                a:hover {
+                    border-bottom-color: @secondary-color;
+                }
+            }
+
             &.active {
                 a {
                     border-bottom-color: @main-color;
+                }
+
+                &.secondary {
+                    a {
+                        border-bottom-color: @secondary-color;
+                    }
                 }
             }
         }
@@ -145,8 +157,17 @@ label {
 
 .badge {
     font-size: 0.8em;
-    background-color: @main-color;
+    background-color: @gray-lighter;
     border-radius: 0;
+    color: initial;
+
+    &.badge-primary {
+        background-color: @main-color;
+    }
+
+    &.badge-secondary {
+        background-color: @secondary-color;
+    }
 }
 
 .sliderContainer {
@@ -200,25 +221,38 @@ article.offer {
     border-bottom: 1px solid @gray-lighter;
 
     .offerContainer {
-        display: table;
+        display: block;
         width: 100%;
 
-        & > section {
-            display: table-cell;
-            vertical-align: top;
+        & > .offerRow {
+            display: table;
+            width: 100%;
 
-            &.image {
-                width: 168px;
+            &:not(:first-child){
+                margin-top: 10px;
             }
 
-            &.content {
-                width: auto;
-                padding: 0 10px;
+            &.buttonRow {
+                display: block;
             }
 
-            &.special {
-                width: 150px;
-                text-align: right;
+            & > section {
+                display: table-cell;
+                vertical-align: top;
+
+                &.image {
+                    width: 168px;
+                }
+
+                &.content {
+                    width: auto;
+                    padding: 0 10px;
+                }
+
+                &.special {
+                    width: 100px;
+                    text-align: right;
+                }
             }
         }
     }
@@ -252,17 +286,27 @@ article.offer {
     }
 }
 
+.btn {
+    border: none;
+    border-radius: 0;
+    background-color: @gray-lighter;
+    padding: 10px 15px;
+    font-weight: bold;
+
+    margin: 0 10px;
+
+    &.btn-primary {
+        background-color: @main-color;
+    }
+
+    &.btn-secondary {
+        background-color: @secondary-color;
+    }
+}
+
 .pagination {
     padding: 15px 0;
     text-align: center;
-
-    #loadMore {
-        border: none;
-        border-radius: 0;
-        background-color: @gray-lighter;
-        padding: 10px 15px;
-        font-weight: bold;
-    }
 }
 
 .offerImage {

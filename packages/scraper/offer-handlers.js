@@ -69,8 +69,27 @@ Meteor.methods({
         offerData.cords = Meteor.call("geocode-address", address);
         offerData.quality = Meteor.call("get-offer-quality", offerData);
 
+        offerData.users = {
+            accepted: [],
+            declined: []
+        };
+
         console.log("inserting offer...");
 
         Offers.insert(offerData);
+    },
+    'userify-all-offers': function(){
+        Offers.find({}).fetch().forEach(offer => {
+            let users = {
+                accepted: [],
+                declined: []
+            };
+
+            Offers.update(offer._id, {
+                $set: {
+                    'users': users
+                }
+            });
+        });
     }
 });

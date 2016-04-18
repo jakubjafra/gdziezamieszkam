@@ -1,7 +1,11 @@
-Router.route('/', function(){
-    this.render("index");
-}, {name: 'offers'});
-
-Router.route('/map', function(){
-    this.render("map");
+Router.configure({
+    layoutTemplate: 'appLayout'
 });
+
+Router.route('/', function(){
+    this.render("offersList");
+}, {name: 'offersList'});
+
+Router.route('/mine', function(){
+    this.render("offersMine");
+}, {name: 'offersMine'});

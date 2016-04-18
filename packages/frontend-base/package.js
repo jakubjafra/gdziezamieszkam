@@ -9,7 +9,8 @@ Package.onUse(function (api) {
         'templating',
         'less',
         'iron:router@1.0.11',
-        'nemo64:bootstrap'
+        'nemo64:bootstrap',
+        'zimme:iron-router-active'
     ]);
 
     api.imply([
@@ -20,6 +21,9 @@ Package.onUse(function (api) {
 
     api.addFiles([
         'handlebars.js',
+
+        'layout/app.html',
+        'layout/app.js',
 
         'config/routing.js',
         'config/head.html',

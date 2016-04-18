@@ -11,13 +11,25 @@ Meteor.publish("offers-counts", function(){
     let query = basicQuery();
 
     Counts.publish(this, "offers-all", Offers.find(query));
-    // TODO: Counts.publish(this, "offers-mine", Offers.find(???));
+
+    let mineQuery = {
+        'users.accepted': { $in: [ this.userId ] }
+    };
+
+    Counts.publish(this, "offers-mine", Offers.find(mineQuery));
 
     return [];
 });
 
 Meteor.publish("offers", function(filters, limit){
     let query = basicQuery();
+
+    query.$and.push({
+        $and: [
+            { 'users.accepted': { $not: { $in: [ this.userId ] } } },
+            { 'users.declined': { $not: { $in: [ this.userId ] } } }
+        ]
+    });
 
     if(filters.price !== undefined) query.$and.push({ 'price': filters.price });
     if(filters.roomCount !== undefined) query.$and.push({ 'roomCount': filters.roomCount });
@@ -27,6 +39,24 @@ Meteor.publish("offers", function(filters, limit){
     if(filters.hideNoPictures === true) query.$and.push({ 'pictures.0': { $ne: null } });
 
     Counts.publish(this, "offers-filtered", Offers.find(query));
+
+    return Offers.find(query, {
+        limit: limit,
+        sort: {
+            quality: -1,
+            price: 1
+        }
+    });
+});
+
+Meteor.publish("offers-mine", function(limit){
+    let query = {
+        $and: []
+    };
+
+    query.$and.push({ 'users.accepted': { $in: [ this.userId ] } });
+
+    Counts.publish(this, "offers-mine", Offers.find(query));
 
     return Offers.find(query, {
         limit: limit,

@@ -27,8 +27,12 @@ Package.onUse(function (api) {
     // ~~~
 
     api.addFiles([
-        'views/index.html',
-        'views/index.js'
+        'views/common/offer.html',
+        'views/common/offer.js',
+        'views/offersList.html',
+        'views/offersList.js',
+        'views/offersMine.html',
+        'views/offersMine.js'
     ], ['client']);
 
     api.addFiles([

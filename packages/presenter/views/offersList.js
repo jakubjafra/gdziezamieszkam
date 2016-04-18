@@ -1,12 +1,5 @@
 let filters = new ReactiveVar({});
 
-(function(){
-    Template.menu.onCreated(function(){
-        let instance = Template.instance();
-        instance.subscribe("offers-counts");
-    });
-})();
-
 (function(filters){
     Template.filters.onRendered(function(){
         $("#price").slider({
@@ -259,72 +252,50 @@ let filters = new ReactiveVar({});
         'click #loadMore': function(){
             itemsLimit.set(itemsLimit.get() + 10);
         }
-    })
+    });
 })(filters);
 
-(function(){
-    Template.offer.helpers({
-        'firstPicture': function(){
-            return this.pictures[0];
-        },
-        'niceRoomCount': function(count){
-            switch(count){
-                case 1:
-                    return "Kawalerka";
-
-                case 2:
-                case 3:
-                case 4:
-                    return `${count} pokoje`;
-
-                default:
-                    return `${count} pokoi`;
-            }
-        }
-    });
-})();
-
-(function(){
-    let markersSS = null;
-    let map;
-    let markers = [];
-
-    Template.map.onCreated(function(){
-        markersSS = this.subscribe("markers");
-    });
-
-    Template.map.onRendered(function(){
-        var mapOptions = {
-            zoom: 12,
-            center: new google.maps.LatLng(52.40637, 16.92517),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        map = new google.maps.Map(
-            document.getElementById('map-container'),
-            mapOptions
-        );
-
-        this.autorun(function(){
-            if(!markersSS.ready())
-                return;
-
-            markers.forEach(function(marker){
-                marker.setMap(null);
-            });
-
-            markers.length = 0;
-
-            Offers.find({}).fetch().forEach(offer => {
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(offer.cords[0], offer.cords[1]),
-                    icon: "http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
-                });
-
-                markers.push(marker);
-            });
-
-            var markerCluster = new MarkerClusterer(map, markers);
-        });
-    });
-})();
+// (function(){
+//     let markersSS = null;
+//     let map;
+//     let markers = [];
+//
+//     Template.map.onCreated(function(){
+//         markersSS = this.subscribe("markers");
+//     });
+//
+//     Template.map.onRendered(function(){
+//         var mapOptions = {
+//             zoom: 12,
+//             center: new google.maps.LatLng(52.40637, 16.92517),
+//             mapTypeId: google.maps.MapTypeId.ROADMAP
+//         };
+//
+//         map = new google.maps.Map(
+//             document.getElementById('map-container'),
+//             mapOptions
+//         );
+//
+//         this.autorun(function(){
+//             if(!markersSS.ready())
+//                 return;
+//
+//             markers.forEach(function(marker){
+//                 marker.setMap(null);
+//             });
+//
+//             markers.length = 0;
+//
+//             Offers.find({}).fetch().forEach(offer => {
+//                 var marker = new google.maps.Marker({
+//                     position: new google.maps.LatLng(offer.cords[0], offer.cords[1]),
+//                     icon: "http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
+//                 });
+//
+//                 markers.push(marker);
+//             });
+//
+//             var markerCluster = new MarkerClusterer(map, markers);
+//         });
+//     });
+// })();

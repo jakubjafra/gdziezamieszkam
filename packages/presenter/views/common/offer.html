@@ -1,0 +1,48 @@
+<template name="offer">
+    <article class="offer animated">
+        <div class="offerContainer">
+            <div class="offerRow">
+                <section class="image">
+                    {{> offerImage src=firstPicture}}
+                </section>
+                <section class="content">
+                    <h1><a href="{{url}}" target="_blank">{{title}}</a></h1>
+                    <h2>
+                        {{area}}&nbsp;m<sup>2</sup>,
+                        {{niceRoomCount roomCount}}
+                        <span class="pull-right">
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            {{niceAddress address}}
+                        </span>
+                    </h2>
+                    <div class="description">
+                        {{{description}}}
+                    </div>
+                </section>
+                <section class="special">
+                    <div class="price">{{price}}&nbsp;zł</div>
+                    <div>{{niceFloat pricePerArea}} zł / m<sup>2</sup></div>
+                    <div>&star;&nbsp;{{niceFloat quality}}</div>
+                </section>
+            </div>
+            <div class="offerRow buttonRow text-center">
+                <button class="btn btn-primary decline">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    &nbsp;
+                    Odrzuć
+                </button>
+                <button class="btn btn-secondary accept">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    &nbsp;
+                    Zapisz
+                </button>
+            </div>
+        </div>
+    </article>
+</template>
+
+<template name="offerImage">
+    <div class="offerImage">
+        <img src="{{src}}" />
+    </div>
+</template>

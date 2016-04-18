@@ -1,0 +1,23 @@
+<template name="appLayout">
+    {{> menu}}
+    {{> yield}}
+</template>
+
+<template name="menu">
+    <nav>
+        <ul class="mainMenu">
+            <li class="{{isActiveRoute regex='offersList'}}">
+                <a href="{{pathFor route='offersList'}}">
+                    Wszystkie oferty
+                    <span class="badge badge-primary">{{getPublishedCount "offers-all"}}</span>
+                </a>
+            </li>
+            <li class="{{isActiveRoute regex='offersMine'}} secondary">
+                <a href="{{pathFor route='offersMine'}}">
+                    Zapisane
+                    <span class="badge badge-secondary">{{getPublishedCount "offers-mine"}}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</template>

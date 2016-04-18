@@ -8,6 +8,14 @@ Package.onUse(function (api) {
         'ecmascript'
     ]);
 
+    api.use([
+        'ongoworks:security'
+    ]);
+
+    api.imply([
+        'ongoworks:security'
+    ]);
+
     // ~~~
 
     api.addFiles([

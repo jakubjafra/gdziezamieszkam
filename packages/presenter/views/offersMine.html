@@ -1,0 +1,16 @@
+<template name="offersMine">
+    <aside></aside>
+    <main>
+        <div class="offersList">
+            {{#each offers}}
+                {{> offer}}
+            {{/each}}
+        </div>
+
+        <div class="pagination">
+            <button class="btn" id="loadMore">
+                Pokaż więcej
+            </button>
+        </div>
+    </main>
+</template>
