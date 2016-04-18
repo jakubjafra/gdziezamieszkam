@@ -235,17 +235,12 @@ let filters = new ReactiveVar({});
 
     Template.offersList.onCreated(function(){
         this.autorun(() => {
-            this.subscribe("offers", filters.get(), itemsLimit.get());
+            this.subscribe("offers", filters.get(), Sorting.constructQuery(sorting.get()), itemsLimit.get());
         });
     });
 
     Template.offersList.helpers({
-        'offers': () => Offers.find({}, {
-            sort: {
-                quality: -1,
-                price: 1
-            }
-        })
+        'offers': () => Offers.find({})
     });
 
     Template.offersList.events({

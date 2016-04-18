@@ -3,17 +3,12 @@
 
     Template.offersMine.onCreated(function(){
         this.autorun(() => {
-            this.subscribe("offers-mine", itemsLimit.get());
+            this.subscribe("offers-mine", Sorting.constructQuery(sorting.get()), itemsLimit.get());
         });
     });
 
     Template.offersMine.helpers({
-        'offers': () => Offers.find({}, {
-            sort: {
-                quality: -1,
-                price: 1
-            }
-        })
+        'offers': () => Offers.find({})
     });
 
     Template.offersMine.events({

@@ -27,8 +27,14 @@ Package.onUse(function (api) {
     // ~~~
 
     api.addFiles([
+        'common/sorting.js'
+    ], ['client', 'server']);
+
+    api.addFiles([
         'views/common/offer.html',
         'views/common/offer.js',
+        'views/common/sorting.html',
+        'views/common/sorting.js',
         'views/offersList.html',
         'views/offersList.js',
         'views/offersMine.html',

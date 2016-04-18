@@ -21,7 +21,7 @@ Meteor.publish("offers-counts", function(){
     return [];
 });
 
-Meteor.publish("offers", function(filters, limit){
+Meteor.publish("offers", function(filters, sorting, limit){
     let query = basicQuery();
 
     query.$and.push({
@@ -40,16 +40,15 @@ Meteor.publish("offers", function(filters, limit){
 
     Counts.publish(this, "offers-filtered", Offers.find(query));
 
+    console.log(sorting);
+
     return Offers.find(query, {
         limit: limit,
-        sort: {
-            quality: -1,
-            price: 1
-        }
+        sort: sorting
     });
 });
 
-Meteor.publish("offers-mine", function(limit){
+Meteor.publish("offers-mine", function(sorting, limit){
     let query = {
         $and: []
     };
@@ -60,10 +59,7 @@ Meteor.publish("offers-mine", function(limit){
 
     return Offers.find(query, {
         limit: limit,
-        sort: {
-            quality: -1,
-            price: 1
-        }
+        sort: sorting
     });
 });
 
