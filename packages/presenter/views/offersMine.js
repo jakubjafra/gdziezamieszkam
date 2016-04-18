@@ -1,19 +1,19 @@
-(function(){
-    let itemsLimit = new ReactiveVar(10);
+let itemsLimit = new ReactiveVar(10);
 
-    Template.offersMine.onCreated(function(){
-        this.autorun(() => {
-            this.subscribe("offers-mine", Sorting.constructQuery(sorting.get()), itemsLimit.get());
-        });
+Template.offersMine.onCreated(function(){
+    this.autorun(() => {
+        this.subscribe("offers-mine", Sorting.constructQuery(sorting.get()), itemsLimit.get());
     });
+});
 
-    Template.offersMine.helpers({
-        'offers': () => Offers.find({})
-    });
+Template.offersMine.helpers({
+    'offers': () => Offers.find({}, {
+        sort: Sorting.constructQuery(sorting.get())
+    })
+});
 
-    Template.offersMine.events({
-        'click #loadMore': function(){
-            itemsLimit.set(itemsLimit.get() + 10);
-        }
-    });
-})();
+Template.offersMine.events({
+    'click #loadMore': function(){
+        itemsLimit.set(itemsLimit.get() + 10);
+    }
+});
