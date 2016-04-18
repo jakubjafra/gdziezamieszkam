@@ -5,6 +5,16 @@
         </div>
 
         <div class="item">
+            <label for="map">
+                Lokalizacja
+            </label>
+            <div id="map">
+                <div id="map-overlay" data-toggle="modal" data-target="#mapModal"></div>
+                <div id="small-map-container"></div>
+            </div>
+        </div>
+
+        <div class="item">
             <label for="price">
                 Cena wynajmu
             </label>
@@ -58,4 +68,14 @@
             <!--</div>-->
         </div>
     </section>
+</template>
+
+<template name="mapModal">
+    <div id="mapModal" class="modal fade in">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="big-map"></div>
+            </div>
+        </div>
+    </div>
 </template>

@@ -1,6 +1,22 @@
 filters = new ReactiveVar({});
 
+let map = null;
+
 Template.filters.onRendered(function(){
+    let mapOptions = {
+        zoom: 10,
+        center: new google.maps.LatLng(52.40637, 16.92517),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true
+    };
+
+    map = new google.maps.Map(
+        document.getElementById('small-map-container'),
+        mapOptions
+    );
+
+    // ~~~
+
     $("#price").slider({
         min: 400,
         max: 4000,
@@ -289,3 +305,37 @@ Template.filters.helpers({
         };
     }
 });
+
+(function(){
+    let map = null;
+
+    Template.mapModal.onRendered(function(){
+        $("#mapModal").on('shown.bs.modal', function(){
+            var mapOptions = {
+                zoom: 13,
+                center: new google.maps.LatLng(52.40637, 16.92517),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true
+            };
+
+            map = new google.maps.Map(
+                document.getElementById('big-map'),
+                mapOptions
+            );
+
+            cords.features.forEach(feature => {
+                var triangleCoords = feature.geometry.coordinates.map(arr => { return {lng: arr[1], lat: arr[0]}});
+
+                var bermudaTriangle = new google.maps.Polygon({
+                    paths: triangleCoords,
+                    strokeColor: '#FFAE1A',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FFAE1A',
+                    fillOpacity: 0.35
+                });
+                bermudaTriangle.setMap(map);
+            })
+        });
+    })
+})();
