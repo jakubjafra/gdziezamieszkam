@@ -35,6 +35,9 @@ Package.onUse(function (api) {
         'views/common/offer.js',
         'views/common/sorting.html',
         'views/common/sorting.js',
+        'views/common/filters.html',
+        'views/common/filters.js',
+
         'views/offersList.html',
         'views/offersList.js',
         'views/offersMine.html',

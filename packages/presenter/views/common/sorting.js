@@ -17,7 +17,7 @@ Template.sorting.onRendered(function(){
         let data = sorting.get();
 
         if(data.__mineChanged === undefined){
-            instance.$("#sorting").val(data.basicQuery);
+            instance.$("#basicSorting").val(data.basicQuery);
             instance.$("#qualityImportant").attr("checked", data.isQualityImportant);
         }
     });
@@ -28,7 +28,7 @@ Template.sorting.helpers({
 });
 
 Template.sorting.events({
-    'change #sorting': function(event){
+    'change #basicSorting': function(event){
         let data = sorting.get();
 
         data.basicQuery = $(event.currentTarget).val();

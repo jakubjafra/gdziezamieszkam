@@ -1,5 +1,6 @@
 <template name="offersList">
     <aside>
+        {{> sorting}}
         {{> filters}}
     </aside>
     <main>
@@ -15,61 +16,4 @@
             </button>
         </div>
     </main>
-</template>
-
-<template name="filters">
-    <section id="filters">
-        <div class="item text-center">
-            Wyfiltrowano <strong class="text-brand">{{counts.filtered}}</strong> z {{counts.total}} dostępnych ofert.
-        </div>
-
-        <div class="item">
-            {{> sorting}}
-        </div>
-
-        <div class="item">
-            <label for="price">
-                Cena wynajmu
-            </label>
-            <div class="sliderContainer">
-                <input id="price" type="text" />
-            </div>
-        </div>
-
-        <div class="item">
-            <label for="roomCount">
-                Ilość pokoi
-            </label>
-            <div class="sliderContainer">
-                <input id="roomCount" type="text" />
-            </div>
-        </div>
-
-        <div class="item">
-            <label for="area">
-                Powierzchnia mieszkania
-            </label>
-            <div class="sliderContainer">
-                <input id="area" type="text" />
-            </div>
-        </div>
-
-        <div class="item filterItems">
-            <div>
-                <input type="checkbox" id="hideEstateAgency" />
-                &nbsp;
-                <label for="hideEstateAgency">Nie pokazuj ofert biur nieruchomości</label>
-            </div>
-            <div>
-                <input type="checkbox" id="hideNoPictures" />
-                &nbsp;
-                <label for="hideNoPictures">Ukryj oferty bez zdjęć</label>
-            </div>
-            <div>
-                <input type="checkbox" id="showShown" disabled="disabled" />
-                &nbsp;
-                <label for="showShown">Pokaż poprzednio obejrzane oferty</label>
-            </div>
-        </div>
-    </section>
 </template>

@@ -1,19 +1,21 @@
 <template name="sorting">
-    <label for="sorting">
-        Sortowanie
-    </label>
-    <select id="sorting" class="form-control">
-        {{#each sortingOptions}}
-            <optgroup label="{{label}}">
-                {{#each options}}
-                    <option value="{{value}}">{{label}}</option>
-                {{/each}}
-            </optgroup>
-        {{/each}}
-    </select>
-    <div style="margin-top: 10px;">
-        <input type="checkbox" id="qualityImportant" />
-        &nbsp;
-        <label for="qualityImportant">Promuj dobrze opisane oferty</label>
-    </div>
+    <section id="sorting">
+        <label for="sorting">
+            Sortowanie
+        </label>
+        <select id="basicSorting" class="form-control">
+            {{#each sortingOptions}}
+                <optgroup label="{{label}}">
+                    {{#each options}}
+                        <option value="{{value}}">{{label}}</option>
+                    {{/each}}
+                </optgroup>
+            {{/each}}
+        </select>
+        <div style="margin-top: 10px;">
+            <input type="checkbox" id="qualityImportant" />
+            &nbsp;
+            <label for="qualityImportant">Promuj dobrze opisane oferty</label>
+        </div>
+    </section>
 </template>

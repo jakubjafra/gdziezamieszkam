@@ -40,8 +40,6 @@ Meteor.publish("offers", function(filters, sorting, limit){
 
     Counts.publish(this, "offers-filtered", Offers.find(query));
 
-    console.log(sorting);
-
     return Offers.find(query, {
         limit: limit,
         sort: sorting
