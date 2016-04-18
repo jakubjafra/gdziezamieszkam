@@ -94,6 +94,36 @@ Template.filters.onRendered(function(){
             }
         }
     });
+
+    $("#pricePerArea").slider({
+        min: 10,
+        max: 70,
+        step: 5,
+        value: [10, 70],
+        scale: 'linear',
+        tooltip: 'always',
+        tooltip_split: false,
+        formatter: str => {
+            if(str[0] === 10 && str[1] === 70)
+                return "wszystkie";
+            else {
+                if(str[0] === str[1]){
+                    if(str[0] === 10)
+                        return "<= " + str[0] + " zł/m²";
+                    else
+                        return ">= " + str[1] + " zł/m²";
+                }
+                else {
+                    if (str[0] === 10)
+                        return "<= " + str[1] + " zł/m²";
+                    else if (str[1] === 70)
+                        return ">= " + str[0] + " zł/m²";
+                    else
+                        return str[0] + " zł/m² - " + str[1] + " zł/m²";
+                }
+            }
+        }
+    });
 });
 
 Template.filters.events({
@@ -190,6 +220,38 @@ Template.filters.events({
             delete actualFilters["area"];
         else
             actualFilters["area"] = cursor;
+
+        filters.set(actualFilters);
+    },
+    'change #pricePerArea': function(event) {
+        let prices = $(event.currentTarget).val().split(",").map(number => parseInt(number, 10));
+        let cursor = null;
+
+        if (prices[0] === 10 && prices[1] === 70)
+            cursor = null;
+        else {
+            if (prices[0] === prices[1])
+                cursor = { $eq: prices[0] };
+            else {
+                if (prices[0] === 10) {
+                    cursor = { $lte: prices[1] };
+                } else if (prices[1] === 70) {
+                    cursor = { $gte: prices[0] }
+                } else {
+                    cursor = {
+                        $gte: prices[0],
+                        $lte: prices[1]
+                    };
+                }
+            }
+        }
+
+        let actualFilters = filters.get();
+
+        if (cursor === null)
+            delete actualFilters["pricePerArea"];
+        else
+            actualFilters["pricePerArea"] = cursor;
 
         filters.set(actualFilters);
     },

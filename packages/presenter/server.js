@@ -34,6 +34,10 @@ Meteor.publish("offers", function(filters, sorting, limit){
     if(filters.price !== undefined) query.$and.push({ 'price': filters.price });
     if(filters.roomCount !== undefined) query.$and.push({ 'roomCount': filters.roomCount });
     if(filters.area !== undefined) query.$and.push({ 'area': filters.area });
+    if(filters.pricePerArea !== undefined){
+        query.$and.push({ 'pricePerArea': filters.pricePerArea });
+        query.$and.push({ 'pricePerArea': { $ne: NaN } });
+    }
 
     if(filters.hideEstateAgency === true) query.$and.push({ 'vendorType': { $ne: 2 } });
     if(filters.hideNoPictures === true) query.$and.push({ 'pictures.0': { $ne: null } });
