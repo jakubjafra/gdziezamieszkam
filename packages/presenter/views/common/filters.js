@@ -327,17 +327,44 @@ Template.filters.helpers({
                 mapOptions
             );
 
-            Cords.raw().forEach(feature => {
+            Cords.all().forEach(feature => {
+                var marker = new MarkerWithLabel({
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 0
+                    },
+                    position: feature.center,
+                    draggable: false,
+                    labelContent: "" + feature.count,
+                    labelAnchor: new google.maps.Point(20, 20),
+                    labelClass: "map-label",
+                    labelStyle: { opacity: 1 }
+                });
+
+                marker.setMap(map);
+
                 var polygon = new google.maps.Polygon({
                     paths: feature.coordinates,
-                    strokeColor: '#FFAE1A',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
+                    strokeColor: '#888',
+                    strokeOpacity: 1,
+                    strokeWeight: 1,
                     fillColor: '#FFAE1A',
-                    fillOpacity: 0.35
+                    fillOpacity: 0
                 });
 
                 polygon.setMap(map);
+
+                google.maps.event.addListener(polygon, 'mouseover', function() {
+                    this.setOptions({
+                        fillOpacity: 0.35
+                    });
+                });
+
+                google.maps.event.addListener(polygon, 'mouseout', function() {
+                    this.setOptions({
+                        fillOpacity: 0
+                    });
+                });
             })
         });
     })

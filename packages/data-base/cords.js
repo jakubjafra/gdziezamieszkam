@@ -2,6 +2,7 @@ let cords = [
     {
         city: "Poznań",
         name: "Wilda",
+        center: { lat: 52.377324, lng: 16.917012 },
         coordinates: [
             { lat: 52.403487, lng: 16.911082 },
             { lat: 52.398178, lng: 16.940590 },
@@ -12,6 +13,7 @@ let cords = [
     {
         city: "Poznań",
         name: "Grunwald",
+        center: { lat: 52.388685, lng: 16.850709 },
         coordinates: [
             { lat: 52.403487, lng: 16.911082 },
             { lat: 52.406492, lng: 16.911649 },
@@ -26,6 +28,7 @@ let cords = [
     {
         city: "Poznań",
         name: "Jeżyce",
+        center: { lat: 52.436260, lng: 16.850731 },
         coordinates: [
             { lat: 52.406492, lng: 16.911649 },
             { lat: 52.414384, lng: 16.798409 },
@@ -40,6 +43,7 @@ let cords = [
     {
         city: "Poznań",
         name: "Windogrady",
+        center: { lat: 52.446595, lng: 16.933900 },
         coordinates: [
             { lat: 52.398178, lng: 16.940590 },
             { lat: 52.403487, lng: 16.911082 },
@@ -55,6 +59,7 @@ let cords = [
     {
         city: "Poznań",
         name: "Nowe miasto",
+        center: { lat: 52.381942, lng: 16.984640 },
         coordinates: [
             { lat: 52.352568, lng: 16.917537 },
             { lat: 52.398178, lng: 16.940590 },
