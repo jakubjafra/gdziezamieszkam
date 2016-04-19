@@ -10,11 +10,13 @@ Package.onUse(function (api) {
 
     api.use([
         'ongoworks:security',
-        'percolate:synced-cron'
+        'percolate:synced-cron',
+        'aldeed:collection2@2.9.1'
     ]);
 
     api.imply([
-        'ongoworks:security'
+        'ongoworks:security',
+        'aldeed:collection2'
     ]);
 
     // ~~~
