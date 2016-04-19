@@ -116,7 +116,12 @@ Cords = (function(){
                     let region = pair.region;
                     region.index = parseInt(pair.index);
                     
-                    region.count = Offers.find({'region': region.index, 'cordsImportance': { $gte: 2 }}).count();
+                    region.count = Offers.find({
+                        'lastSeen.0': { $gte: moment().startOf('day').subtract(2, 'days').valueOf() },
+                        'address.city': "Poznań",
+                        'region': region.index,
+                        'cordsImportance': { $gte: 2 }
+                    }).count();
 
                     regions.insert(region);
                 })
