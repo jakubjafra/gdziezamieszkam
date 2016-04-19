@@ -22,9 +22,13 @@ Meteor.methods({
             if(result === null)
                 continue;
 
-            return result;
+            return {
+                cords: result,
+                importance: possibleAddresses[i].importance
+            };
         }
 
+        // założenie jest takie, że nigdy nie powinno zwrócić null...
         return null;
     },
     "call-geocoder": function(address){

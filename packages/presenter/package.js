@@ -27,8 +27,7 @@ Package.onUse(function (api) {
     // ~~~
 
     api.addFiles([
-        'common/sorting.js',
-        'common/cords.js'
+        'common/sorting.js'
     ], ['client', 'server']);
 
     api.addFiles([

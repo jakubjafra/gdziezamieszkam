@@ -65,8 +65,13 @@ Meteor.methods({
         console.log("calling geocode service...");
 
         offerData.pricePerArea = (offerData.price / offerData.area);
-        
-        offerData.cords = Meteor.call("geocode-address", address);
+
+        let geocodedRegion = Meteor.call("geocode-address", address);
+
+        offerData.cords = Cords.a2o(geocodedRegion.cords);
+        offerData.cordsImportance = geocodedRegion.importance;
+
+        offerData.region = Cords.getAmbientRegionId(offerData.cords);
         offerData.quality = Meteor.call("get-offer-quality", offerData);
 
         offerData.users = {
@@ -88,6 +93,24 @@ Meteor.methods({
             Offers.update(offer._id, {
                 $set: {
                     'users': users
+                }
+            });
+        });
+    },
+    'generate-regions-for-all-offers': function(){
+        Offers.find({}).fetch().forEach(offer => {
+            if(offer.cords.constructor === Array) {
+                offer.cords = Cords.a2o(offer.cords);
+                offer.cordsImportance = 3;
+            }
+
+            offer.region = Cords.getAmbientRegionId(offer.cords);
+
+            Offers.update(offer._id, {
+                $set: {
+                    'cords': offer.cords,
+                    'cordsImportance': offer.cordsImportance,
+                    'region': offer.region
                 }
             });
         });

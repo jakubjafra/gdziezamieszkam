@@ -9,7 +9,8 @@ Package.onUse(function (api) {
     ]);
 
     api.use([
-        'ongoworks:security'
+        'ongoworks:security',
+        'percolate:synced-cron'
     ]);
 
     api.imply([
@@ -19,10 +20,12 @@ Package.onUse(function (api) {
     // ~~~
 
     api.addFiles([
-        'common.js'
+        'common.js',
+        'cords.js'
     ], ['client', 'server']);
 
     api.export([
-        'Offers'
+        'Offers',
+        'Cords'
     ], ['client', 'server']);
 });

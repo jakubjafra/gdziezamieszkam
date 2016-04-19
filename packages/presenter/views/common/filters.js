@@ -309,10 +309,14 @@ Template.filters.helpers({
 (function(){
     let map = null;
 
+    Template.mapModal.onCreated(function(){
+        Cords.subscribe(this);
+    });
+
     Template.mapModal.onRendered(function(){
         $("#mapModal").on('shown.bs.modal', function(){
             var mapOptions = {
-                zoom: 13,
+                zoom: 12,
                 center: new google.maps.LatLng(52.40637, 16.92517),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 disableDefaultUI: true
@@ -323,18 +327,17 @@ Template.filters.helpers({
                 mapOptions
             );
 
-            cords.features.forEach(feature => {
-                var triangleCoords = feature.geometry.coordinates.map(arr => { return {lng: arr[1], lat: arr[0]}});
-
-                var bermudaTriangle = new google.maps.Polygon({
-                    paths: triangleCoords,
+            Cords.raw().forEach(feature => {
+                var polygon = new google.maps.Polygon({
+                    paths: feature.coordinates,
                     strokeColor: '#FFAE1A',
                     strokeOpacity: 0.8,
                     strokeWeight: 2,
                     fillColor: '#FFAE1A',
                     fillOpacity: 0.35
                 });
-                bermudaTriangle.setMap(map);
+
+                polygon.setMap(map);
             })
         });
     })
