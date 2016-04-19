@@ -1,7 +1,7 @@
 function basicQuery(){
     return {
         $and: [
-            { 'lastSeen.0': { $gte: moment().startOf('day').subtract(1, 'days').valueOf() } },
+            { 'lastSeen.0': { $gte: moment().startOf('day').subtract(2, 'days').valueOf() } },
             { 'address.city': "Poznań" }
         ]
     };
