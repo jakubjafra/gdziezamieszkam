@@ -9,7 +9,7 @@ Package.onUse(function (api) {
         'templating',
         'less',
         'iron:router@1.0.11',
-        'nemo64:bootstrap',
+        'nemo64:bootstrap@3.3.5',
         'zimme:iron-router-active'
     ]);
 

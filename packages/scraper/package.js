@@ -11,7 +11,7 @@ Package.onUse(function (api) {
         'meteor-platform',
         'ecmascript',
         'http',
-        'momentjs:moment',
+        'mrt:moment',
         'froatsnook:sleep',
         'random',
         'percolate:synced-cron'
