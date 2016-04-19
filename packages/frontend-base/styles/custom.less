@@ -294,6 +294,7 @@ article.offer {
 
                 &.image {
                     width: 168px;
+                    overflow: hidden;
                 }
 
                 &.content {
@@ -364,15 +365,29 @@ article.offer {
 }
 
 .offerImage {
+    position: relative;
+
+    display: inline-block;
+
     width: 168px;
     height: 168px;
     overflow: hidden;
-    display: inline-block;
+    background-color: @gray-lighter;
 
-    img {
-        width: 400px;
-        height: 300px;
-        margin: -75px 0 0 -100px;
+    .imageRow {
+        display: table;
+        width: 168px;
+        height: 168px;
+
+        .imageCell {
+            display: table-cell;
+            vertical-align: middle;
+
+            img {
+                width: 168px;
+                height: auto;
+            }
+        }
     }
 }
 
