@@ -2,18 +2,22 @@ filters = new ReactiveVar({});
 
 let map = null;
 
-Template.filters.onRendered(function(){
-    let mapOptions = {
-        zoom: 10,
-        center: new google.maps.LatLng(52.40637, 16.92517),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true
-    };
+Template.filters.onCreated(function(){
+    Cords.subscribe(this);
+});
 
-    map = new google.maps.Map(
-        document.getElementById('small-map-container'),
-        mapOptions
-    );
+Template.filters.onRendered(function(){
+    // let mapOptions = {
+    //     zoom: 10,
+    //     center: new google.maps.LatLng(52.40637, 16.92517),
+    //     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    //     disableDefaultUI: true
+    // };
+    //
+    // map = new google.maps.Map(
+    //     document.getElementById('small-map-container'),
+    //     mapOptions
+    // );
 
     // ~~~
 
@@ -142,7 +146,35 @@ Template.filters.onRendered(function(){
     });
 });
 
+Template.filters.helpers({
+    'districts': () => Cords.all()
+});
+
 Template.filters.events({
+    'change #localization': function(event){
+        let district = $(event.currentTarget).val();
+
+        let actualFilters = filters.get();
+
+        if (district === "__all")
+            delete actualFilters["localization"];
+        else
+            actualFilters["localization"] = parseInt(district);
+
+        filters.set(actualFilters);
+    },
+    'change #includeMisleadingAddress': function(event){
+        let isToggled = $(event.currentTarget).is(":checked");
+
+        let actualFilters = filters.get();
+
+        if(isToggled)
+            actualFilters.includeMisleadingAddress = true;
+        else
+            delete actualFilters['includeMisleadingAddress'];
+
+        filters.set(actualFilters);
+    },
     'change #price': function(event) {
         let prices = $(event.currentTarget).val().split(",").map(number => parseInt(number, 10));
         let cursor = null;
@@ -306,66 +338,66 @@ Template.filters.helpers({
     }
 });
 
-(function(){
-    let map = null;
-
-    Template.mapModal.onCreated(function(){
-        Cords.subscribe(this);
-    });
-
-    Template.mapModal.onRendered(function(){
-        $("#mapModal").on('shown.bs.modal', function(){
-            var mapOptions = {
-                zoom: 12,
-                center: new google.maps.LatLng(52.40637, 16.92517),
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                disableDefaultUI: true
-            };
-
-            map = new google.maps.Map(
-                document.getElementById('big-map'),
-                mapOptions
-            );
-
-            Cords.all().forEach(feature => {
-                var marker = new MarkerWithLabel({
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 0
-                    },
-                    position: feature.center,
-                    draggable: false,
-                    labelContent: "" + feature.count,
-                    labelAnchor: new google.maps.Point(20, 20),
-                    labelClass: "map-label",
-                    labelStyle: { opacity: 1 }
-                });
-
-                marker.setMap(map);
-
-                var polygon = new google.maps.Polygon({
-                    paths: feature.coordinates,
-                    strokeColor: '#888',
-                    strokeOpacity: 1,
-                    strokeWeight: 1,
-                    fillColor: '#FFAE1A',
-                    fillOpacity: 0
-                });
-
-                polygon.setMap(map);
-
-                google.maps.event.addListener(polygon, 'mouseover', function() {
-                    this.setOptions({
-                        fillOpacity: 0.35
-                    });
-                });
-
-                google.maps.event.addListener(polygon, 'mouseout', function() {
-                    this.setOptions({
-                        fillOpacity: 0
-                    });
-                });
-            })
-        });
-    })
-})();
+// (function(){
+//     let map = null;
+//
+//     Template.mapModal.onCreated(function(){
+//         Cords.subscribe(this);
+//     });
+//
+//     Template.mapModal.onRendered(function(){
+//         $("#mapModal").on('shown.bs.modal', function(){
+//             var mapOptions = {
+//                 zoom: 12,
+//                 center: new google.maps.LatLng(52.40637, 16.92517),
+//                 mapTypeId: google.maps.MapTypeId.ROADMAP,
+//                 disableDefaultUI: true
+//             };
+//
+//             map = new google.maps.Map(
+//                 document.getElementById('big-map'),
+//                 mapOptions
+//             );
+//
+//             Cords.all().forEach(feature => {
+//                 var marker = new MarkerWithLabel({
+//                     icon: {
+//                         path: google.maps.SymbolPath.CIRCLE,
+//                         scale: 0
+//                     },
+//                     position: feature.center,
+//                     draggable: false,
+//                     labelContent: "" + feature.count,
+//                     labelAnchor: new google.maps.Point(20, 20),
+//                     labelClass: "map-label",
+//                     labelStyle: { opacity: 1 }
+//                 });
+//
+//                 marker.setMap(map);
+//
+//                 var polygon = new google.maps.Polygon({
+//                     paths: feature.coordinates,
+//                     strokeColor: '#888',
+//                     strokeOpacity: 1,
+//                     strokeWeight: 1,
+//                     fillColor: '#FFAE1A',
+//                     fillOpacity: 0
+//                 });
+//
+//                 polygon.setMap(map);
+//
+//                 google.maps.event.addListener(polygon, 'mouseover', function() {
+//                     this.setOptions({
+//                         fillOpacity: 0.35
+//                     });
+//                 });
+//
+//                 google.maps.event.addListener(polygon, 'mouseout', function() {
+//                     this.setOptions({
+//                         fillOpacity: 0
+//                     });
+//                 });
+//             })
+//         });
+//     })
+// })();

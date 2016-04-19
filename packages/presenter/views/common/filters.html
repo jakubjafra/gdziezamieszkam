@@ -5,18 +5,28 @@
         </div>
 
         <div class="item">
-            <label for="map">
+            <label for="localization">
                 Lokalizacja
             </label>
+            <select id="localization" class="form-control">
+                <option value="__all">Całe miasto</option>
+                <optgroup label="Dzielnice">
+                    {{#each districts}}
+                        <option value="{{index}}">{{name}} ({{count}})</option>
+                    {{/each}}
+                </optgroup>
+            </select>
+            <div style="margin-top: 10px;">
+                <input type="checkbox" id="includeMisleadingAddress" />
+                &nbsp;
+                <label for="includeMisleadingAddress">Pokaż wyniki o wątpliwym adresie</label>
+            </div>
+            {{!--
             <div id="map">
                 <div id="map-overlay" data-toggle="modal" data-target="#mapModal"></div>
                 <div id="small-map-container"></div>
             </div>
-            <div style="margin-top: 10px;">
-                <input type="checkbox" id="excludeMisleadingAddress" />
-                &nbsp;
-                <label for="excludeMisleadingAddress">Ukryj wyniki o wątpliwym adresie</label>
-            </div>
+            --}}
         </div>
 
         <div class="item">
