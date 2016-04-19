@@ -1,4 +1,11 @@
-@import "./bootstrap/custom.bootstrap.import.less";
+* {
+    box-sizing: content-box;
+}
+
+@gray-base: #000;
+@gray: lighten(@gray-base, 33.5%);
+@gray-light: lighten(@gray-base, 46.7%);
+@gray-lighter: lighten(@gray-base, 93.5%);
 
 body {
     font-size: 12px;
@@ -185,7 +192,7 @@ nav {
 a {
     color: black;
 
-    &:visited {
+    &:visited, &:hover {
         color: black;
     }
 }
@@ -308,7 +315,7 @@ article.offer {
 
         a {
             text-decoration: none;
-            padding: 0.05em 0;
+            padding: 0;
             border-bottom: 3px solid @main-color;
         }
     }
@@ -341,15 +348,17 @@ article.offer {
     margin: 0 10px;
 
     &.btn-primary {
+        color: black;
         background-color: @main-color;
     }
 
     &.btn-secondary {
+        color: black;
         background-color: @secondary-color;
     }
 }
 
-.pagination {
+.more {
     padding: 15px 0;
     text-align: center;
 }

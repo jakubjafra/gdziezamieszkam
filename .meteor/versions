@@ -64,8 +64,6 @@ modules-runtime@0.6.2
 mongo@1.1.6
 mongo-id@1.0.3
 mrt:moment@1.7.0
-nemo64:bootstrap@3.3.5_2
-nemo64:bootstrap-data@3.3.5
 npm-mongo@1.4.42
 observe-sequence@1.0.10
 ongoworks:security@2.0.1
@@ -92,6 +90,7 @@ templating@1.1.8
 templating-tools@1.0.3
 tmeasday:publish-counts@0.7.3
 tracker@1.0.12
+twbs:bootstrap@3.3.6
 ui@1.0.10
 underscore@1.0.7
 url@1.0.8

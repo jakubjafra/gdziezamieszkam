@@ -9,7 +9,7 @@ Package.onUse(function (api) {
         'templating',
         'less',
         'iron:router@1.0.11',
-        'nemo64:bootstrap@3.3.5',
+        'twbs:bootstrap',
         'zimme:iron-router-active'
     ]);
 
@@ -28,10 +28,10 @@ Package.onUse(function (api) {
         'config/routing.js',
         'config/head.html',
 
-        'styles/bootstrap/custom.bootstrap.json',
-        'styles/bootstrap/custom.bootstrap.import.less',
-        'styles/bootstrap/custom.bootstrap.mixins.import.less',
-        'styles/bootstrap/custom.bootstrap.less',
+        // 'styles/bootstrap/custom.bootstrap.json',
+        // 'styles/bootstrap/custom.bootstrap.import.less',
+        // 'styles/bootstrap/custom.bootstrap.mixins.import.less',
+        // 'styles/bootstrap/custom.bootstrap.less',
         'styles/custom.less'
     ], ['client']);
 });
