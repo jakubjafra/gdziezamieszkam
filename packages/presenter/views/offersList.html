@@ -9,7 +9,7 @@
     <main>
         <div class="offersList">
             {{#each offers}}
-                {{> offer}}
+                {{> offer offer=this isMine=false}}
             {{/each}}
         </div>
 

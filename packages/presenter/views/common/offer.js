@@ -1,6 +1,6 @@
 Template.offer.helpers({
     'firstPicture': function(){
-        return this.pictures[0];
+        return this.offer.pictures[0];
     },
     'niceAddress': function(address){
         let string = "";
@@ -40,7 +40,7 @@ Template.offer.events({
         if(Meteor.userId() === null)
             return;
 
-        Offers.update(this._id, {
+        Offers.update(this.offer._id, {
             $push: { 'users.accepted': Meteor.userId() }
         });
     },
@@ -48,8 +48,17 @@ Template.offer.events({
         if(Meteor.userId() === null)
             return;
 
-        Offers.update(this._id, {
+        Offers.update(this.offer._id, {
+            $push: { 'users.declined': Meteor.userId() }
+        });
+    },
+    'click .declineMine': function(){
+        if(Meteor.userId() === null)
+            return;
+
+        Offers.update(this.offer._id, {
+            $pull: { 'users.accepted': Meteor.userId() },
             $push: { 'users.declined': Meteor.userId() }
         });
     }
-})
+});

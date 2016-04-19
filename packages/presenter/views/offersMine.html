@@ -3,9 +3,9 @@
         {{> sorting}}
     </aside>
     <main>
-        <div class="offersList">
+        <div class="offersList mine">
             {{#each offers}}
-                {{> offer}}
+                {{> offer offer=this isMine=true}}
             {{/each}}
         </div>
 

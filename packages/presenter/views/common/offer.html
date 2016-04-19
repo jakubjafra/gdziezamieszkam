@@ -6,37 +6,52 @@
                     {{> offerImage src=firstPicture}}
                 </section>
                 <section class="content">
-                    <h1><a href="{{url}}" target="_blank">{{title}}</a></h1>
-                    <h2>
-                        {{area}}&nbsp;m<sup>2</sup>,
-                        {{niceRoomCount roomCount}}
-                        <span class="pull-right">
-                            <span class="glyphicon glyphicon-map-marker"></span>
-                            {{niceAddress address}}
-                        </span>
-                    </h2>
-                    <div class="description">
-                        {{{description}}}
-                    </div>
+                    {{#with offer}}
+                        <h1><a href="{{url}}" target="_blank">{{title}}</a></h1>
+                        <h2>
+                            {{area}}&nbsp;m<sup>2</sup>,
+                            {{niceRoomCount roomCount}}
+                            <span class="pull-right">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                {{niceAddress address}}
+                            </span>
+                        </h2>
+                        <div class="description">
+                            {{{description}}}
+                        </div>
+                    {{/with}}
                 </section>
                 <section class="special">
-                    <div class="price">{{price}}&nbsp;zł</div>
-                    <div>{{niceFloat pricePerArea}} zł / m<sup>2</sup></div>
-                    <div>&star;&nbsp;{{niceFloat quality}}</div>
+                    {{#with offer}}
+                        <div class="price">{{price}}&nbsp;zł</div>
+                        <div>{{niceFloat pricePerArea}} zł / m<sup>2</sup></div>
+                        <div>&star;&nbsp;{{niceFloat quality}}</div>
+                    {{/with}}
+                    {{#if isMine}}
+                        <div style="padding-top: 20px;">
+                            <button class="btn btn-sm btn-primary declineMine" style="margin:0;">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                &nbsp;
+                                Odrzuć
+                            </button>
+                        </div>
+                    {{/if}}
                 </section>
             </div>
-            <div class="offerRow buttonRow text-center">
-                <button class="btn btn-primary decline">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    &nbsp;
-                    Odrzuć
-                </button>
-                <button class="btn btn-secondary accept">
-                    <span class="glyphicon glyphicon-ok"></span>
-                    &nbsp;
-                    Zapisz
-                </button>
-            </div>
+            {{#unless isMine}}
+                <div class="offerRow buttonRow text-center">
+                    <button class="btn btn-primary decline">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        &nbsp;
+                        Odrzuć
+                    </button>
+                    <button class="btn btn-secondary accept">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        &nbsp;
+                        Zapisz
+                    </button>
+                </div>
+            {{/unless}}
         </div>
     </article>
 </template>
