@@ -4,16 +4,19 @@ Meteor.methods({
     "geocode-address": function(address){
         let possibleAddresses = [];
 
-        function pushPossibleAddress(query, importance){
+        function pushPossibleAddress(city, importance, query){
+            if(query === null)
+                return;
+
             possibleAddresses.push({
-                query: query,
+                query: query !== undefined ? query + ", " + city : city,
                 importance: importance
             });
         }
 
-        pushPossibleAddress(address.street + ", " + address.city, 4);
-        pushPossibleAddress(address.housing + ", " + address.city, 3);
-        pushPossibleAddress(address.district + ", " + address.city, 2);
+        pushPossibleAddress(address.city, 4, address.street);
+        pushPossibleAddress(address.city, 3, address.housing);
+        pushPossibleAddress(address.city, 2, address.district);
         pushPossibleAddress(address.city, 1);
 
         for(let i = 0; i < possibleAddresses.length; i++){

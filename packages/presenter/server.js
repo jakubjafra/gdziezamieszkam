@@ -24,15 +24,11 @@ Meteor.publish("offers-counts", function(){
 Meteor.publish("offers", function(filters, sorting, limit){
     let query = basicQuery();
 
-    query.$and.push({
-        $and: [
-            { 'users.accepted': { $not: { $in: [ this.userId ] } } },
-            { 'users.declined': { $not: { $in: [ this.userId ] } } }
-        ]
-    });
+    query.$and.push({ 'users.accepted': { $not: { $in: [ this.userId ] } } });
+    query.$and.push({ 'users.declined': { $not: { $in: [ this.userId ] } } });
 
     if(filters.localization !== undefined) query.$and.push({ 'region': filters.localization });
-    if(!(filters.includeMisleadingAddress !== undefined)) query.$and.push({ 'cordsImportance': { $gte: 2}});
+    if(!(filters.includeMisleadingAddress !== undefined)) query.$and.push({ 'cordsImportance': { $gte: 2 } });
 
     if(filters.price !== undefined) query.$and.push({ 'price': filters.price });
     if(filters.roomCount !== undefined) query.$and.push({ 'roomCount': filters.roomCount });

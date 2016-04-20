@@ -212,40 +212,36 @@ howSimilarTheyAre = function(word, streetName){
 };
 
 parseDefinitionFile = function(url, table){
-    Crawler.get(
-        url,
-        {},
-        function(error, result){
-            console.log("[name-street] * Got definition file!");
+    let result = Crawler.get(url);
 
-            var streets = cheerio.load(result.content);
+    console.log("[name-street] * Got definition file!");
 
-            table.remove({});
-            streets('tbody tr').each(function(i, v){
-                var name = streets("td.s0", v).get(0).children[0].data;
+    var streets = cheerio.load(result.content);
 
-                var keywords = [];
+    table.remove({});
+    streets('tbody tr').each(function(i, v){
+        var name = streets("td.s0", v).get(0).children[0].data;
 
-                for(var i = 1; i < streets("td.s0", v).length; i++){
-                    if(streets("td.s0", v).get(i).children[0] == undefined)
-                        continue;
+        var keywords = [];
 
-                    var keyword = streets("td.s0", v).get(i).children[0].data.trim();
-                    var latinKeyword = stripAccents(keyword, -1);
+        for(var i = 1; i < streets("td.s0", v).length; i++){
+            if(streets("td.s0", v).get(i).children[0] == undefined)
+                continue;
 
-                    keywords.push({
-                        keyword: keyword,
-                        latinKeyword: latinKeyword
-                    });
-                }
+            var keyword = streets("td.s0", v).get(i).children[0].data.trim();
+            var latinKeyword = stripAccents(keyword, -1);
 
-                table.insert({
-                    name: name,
-                    keywords: keywords
-                });
+            keywords.push({
+                keyword: keyword,
+                latinKeyword: latinKeyword
             });
-
-            console.log("[name-street] * ...Done.");
         }
-    );
+
+        table.insert({
+            name: name,
+            keywords: keywords
+        });
+    });
+
+    console.log("[name-street] * ...Done.");
 };
