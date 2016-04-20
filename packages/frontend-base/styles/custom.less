@@ -82,9 +82,32 @@ nav {
     border-bottom: 1px solid @gray-lighter;
     z-index: 1000;
 
-    ul.mainMenu {
+    h1 {
+        box-sizing: border-box;
+        position: relative;
         margin: 0;
-        margin-left: @aside-width;
+        height: 50px;
+        padding: 12px;
+        font-size: 24px;
+        font-weight: bold;
+        color: @main-color;
+
+
+        span {
+            //margin-left: 1px;
+            padding: 3px 5px;
+            color: black;
+            background-color: @main-color;
+        }
+    }
+
+    ul.mainMenu {
+        position: absolute;
+        top: 0;
+        left: @aside-width;
+
+        margin: 0;
+        //margin-left: @aside-width;
         padding: 0;
 
         li {
