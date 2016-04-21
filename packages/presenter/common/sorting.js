@@ -7,12 +7,12 @@ let basicSortingOptions = [
     {
         label: "Po cenie, rosnąco",
         group: "price",
-        query: ['price', 1]
+        query: ['price.price', 1]
     },
     {
         label: "Po cenie, malejąco",
         group: "price",
-        query: ['price', -1]
+        query: ['price.price', -1]
     },
     {
         label: "Po cenie za m², rosnąco",

@@ -16,8 +16,9 @@ Offers.attachSchema(new SimpleSchema({
         optional: true
     },
     price: {
-        type: Number,
+        type: Object,
         optional: true,
+        blackbox: true,
         index: 1
     },
     pictures: {
@@ -101,10 +102,6 @@ Offers.attachSchema(new SimpleSchema({
         decimal: true,
         optional: true,
         index: 1
-    },
-    priceDeposit: {
-        type: Number,
-        optional: true
     },
     users: {
         type: new SimpleSchema({

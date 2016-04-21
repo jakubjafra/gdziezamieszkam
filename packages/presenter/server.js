@@ -30,7 +30,7 @@ Meteor.publish("offers", function(filters, sorting, limit){
     if(filters.localization !== undefined) query.$and.push({ 'region': filters.localization });
     if(!(filters.includeMisleadingAddress !== undefined)) query.$and.push({ 'cordsImportance': { $gte: 2 } });
 
-    if(filters.price !== undefined) query.$and.push({ 'price': filters.price });
+    if(filters.price !== undefined) query.$and.push({ 'price.price': filters.price });
     if(filters.roomCount !== undefined) query.$and.push({ 'roomCount': filters.roomCount });
     if(filters.area !== undefined) query.$and.push({ 'area': filters.area });
     if(filters.pricePerArea !== undefined){

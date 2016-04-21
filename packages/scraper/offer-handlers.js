@@ -64,9 +64,6 @@ Meteor.methods({
 
         console.log("calling geocode service...");
 
-        if(offerData.area !== undefined)
-            offerData.pricePerArea = (offerData.price / offerData.area);
-
         let geocodedRegion = Meteor.call("geocode-address", address);
 
         offerData.cords = Cords.a2o(geocodedRegion.cords);
@@ -74,7 +71,14 @@ Meteor.methods({
 
         console.log("calling other services...");
 
-        offerData.priceDeposit = Meteor.call("find-deposit-in-string", offerData.description);
+        offerData.price.rent = Meteor.call("find-rent-in-string", offerData.description, offerData.price.price);
+        if(offerData.price.rent !== null)
+            offerData.price.price += offerData.price.rent;
+
+        if(offerData.area !== undefined)
+            offerData.pricePerArea = (offerData.price.price / offerData.area);
+
+        offerData.price.deposit = Meteor.call("find-deposit-in-string", offerData.description);
         offerData.region = Cords.getAmbientRegionId(offerData.cords);
         offerData.quality = Meteor.call("get-offer-quality", offerData);
 

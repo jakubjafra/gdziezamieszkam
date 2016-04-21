@@ -23,10 +23,13 @@
                 </section>
                 <section class="special">
                     {{#with offer}}
-                        <div class="price">{{niceInt price}}&nbsp;zł</div>
+                        <div class="price" title="Całkowita kwota wynajmu bez opłat eksploatacyjnych">{{niceInt price.price}}&nbsp;zł</div>
+                        {{#if price.rent}}
+                            <div>czynsz: {{niceInt price.rent}}&nbsp;zł</div>
+                        {{/if}}
                         <div>{{niceFloat pricePerArea}} zł / m<sup>2</sup></div>
-                        {{#if priceDeposit}}
-                            <div>kaucja: {{niceInt priceDeposit}} zł</div>
+                        {{#if price.deposit}}
+                            <div>kaucja: {{niceInt price.deposit}} zł</div>
                         {{/if}}
                     {{/with}}
                     {{#if isMine}}

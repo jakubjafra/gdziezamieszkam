@@ -105,7 +105,9 @@ Meteor.methods({
             url: offerPageUrl,
             title,
             description,
-            price,
+            price: {
+                price
+            },
             pictures: [coverPicture],
             city: "Poznań"
         };
