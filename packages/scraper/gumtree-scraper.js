@@ -127,7 +127,7 @@ Meteor.methods({
 SyncedCron.add({
     name: 'scrap-gumtree',
     schedule: function(parser){
-        return parser.text('at 9:00 pm');
+        return parser.text('at 3:00 am');
     },
     job: function() {
         Meteor.call("scrap-gumtree")
