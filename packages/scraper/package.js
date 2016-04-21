@@ -27,6 +27,7 @@ Package.onUse(function (api) {
         'connection.js',
         'server-commons.js',
         'quality.js',
+        'deposit.js',
         'olx-scraper.js',
         'gumtree-scraper.js',
         'offer-handlers.js',

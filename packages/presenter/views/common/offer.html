@@ -23,8 +23,11 @@
                 </section>
                 <section class="special">
                     {{#with offer}}
-                        <div class="price">{{price}}&nbsp;zł</div>
+                        <div class="price">{{niceInt price}}&nbsp;zł</div>
                         <div>{{niceFloat pricePerArea}} zł / m<sup>2</sup></div>
+                        {{#if priceDeposit}}
+                            <div>kaucja: {{niceFloat priceDeposit}} zł</div>
+                        {{/if}}
                     {{/with}}
                     {{#if isMine}}
                         <div style="padding-top: 20px;">

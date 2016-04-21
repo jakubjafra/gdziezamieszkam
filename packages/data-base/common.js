@@ -102,6 +102,10 @@ Offers.attachSchema(new SimpleSchema({
         optional: true,
         index: 1
     },
+    priceDeposit: {
+        type: Number,
+        optional: true
+    },
     users: {
         type: new SimpleSchema({
             accepted: {

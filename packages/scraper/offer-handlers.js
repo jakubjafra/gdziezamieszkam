@@ -71,6 +71,9 @@ Meteor.methods({
         offerData.cords = Cords.a2o(geocodedRegion.cords);
         offerData.cordsImportance = geocodedRegion.importance;
 
+        console.log("calling other services...");
+
+        offerData.priceDeposit = Meteor.call("find-deposit-in-string", offerData.description);
         offerData.region = Cords.getAmbientRegionId(offerData.cords);
         offerData.quality = Meteor.call("get-offer-quality", offerData);
 
@@ -83,6 +86,9 @@ Meteor.methods({
 
         Offers.insert(offerData);
     },
+
+    // tmp methods:
+
     'userify-all-offers': function(){
         Offers.find({}).fetch().forEach(offer => {
             let users = {
