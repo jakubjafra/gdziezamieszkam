@@ -64,7 +64,8 @@ Meteor.methods({
 
         console.log("calling geocode service...");
 
-        offerData.pricePerArea = (offerData.price / offerData.area);
+        if(offerData.area !== undefined)
+            offerData.pricePerArea = (offerData.price / offerData.area);
 
         let geocodedRegion = Meteor.call("geocode-address", address);
 
