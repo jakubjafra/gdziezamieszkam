@@ -38,6 +38,8 @@ Package.onUse(function (api) {
         'views/common/filters.html',
         'views/common/filters.js',
 
+        'views/index.html',
+        'views/index.js',
         'views/offersList.html',
         'views/offersList.js',
         'views/offersMine.html',

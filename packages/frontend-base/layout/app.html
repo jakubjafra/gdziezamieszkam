@@ -5,7 +5,12 @@
 
 <template name="menu">
     <nav>
-        <h1><span>gdziezamieszkam</span></h1>
+        <h1>
+            <span>
+                <a href="{{pathFor route='index'}}">gdziezamieszkam</a>
+            </span>
+        </h1>
+        {{#if isActiveRoute regex='offers'}}
         <ul class="mainMenu">
             <li class="{{isActiveRoute regex='offersList'}}">
                 <a href="{{pathFor route='offersList'}}">
@@ -20,5 +25,6 @@
                 </a>
             </li>
         </ul>
+        {{/if}}
     </nav>
 </template>

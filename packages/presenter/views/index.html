@@ -1,0 +1,80 @@
+<template name="index">
+    <div class="main">
+        <section class="section80 centerify">
+            <div style="padding-bottom: 5vh;">
+                <h1><span>gdziezamieszkam</span></h1>
+                <h3>
+                    Inteligentna wyszukiwarka mieszkań na wynajem<br>
+                    <small>
+                        Przeszukujemy Internet w poszukiwaniu ofert, a każdą z nich dokładnie analizujemy<br>
+                        prezentując najważniejsze informacje na pierwszym planie.
+                    </small>
+                </h3>
+                <br>
+                {{> callToActionForm}}
+            </div>
+        </section>
+        <section class="gray section20 centerify">
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 text-center">
+                            <h3><span>Wyszukiwarka</span></h3>
+                            <h4>
+                                <small>
+                                    Zbieramy oferty w jednym miejscu, byś nie musiał przeszukiwać kilku portali.
+                                </small>
+                            </h4>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <h3><span>Parser ofert</span></h3>
+                            <h4>
+                                <small>
+                                    Wyciągamy z oferty najważniejsze informacje, takie jak <em>pełna cena wynajmu</em>, <em>kaucja</em>, <em>dokładna lokalizacja</em> etc.
+                                </small>
+                            </h4>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <h3><span>Filtry</span></h3>
+                            <h4>
+                                <small>
+                                    Przeglądaj tylko te oferty które Cię interesują. Obserwuj swoje kryteria w poszukiwaniu nowych ofert.
+                                </small>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-auto">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        gdziezamieszkam
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>
+
+<template name="callToActionForm">
+    <form id="call-to-action">
+        <div>
+            <p>Szukam</p>
+            <select id="type" class="form-control">
+                <option>mieszkania</option>
+                <option>pokoju</option>
+            </select>
+            <p>w</p>
+            <select id="city" class="form-control">
+                <option value="poznan">Poznaniu</option>
+                <option value="warszawa">Warszawie</option>
+                <option value="trojmiasto">Trójmieście</option>
+                <option value="wroclaw">Wrocławiu</option>
+                <option value="krakow">Krakowie</option>
+            </select>
+        </div>
+        <input type="submit" value="Pokaż oferty" class="btn btn-block btn-primary" />
+    </form>
+</template>

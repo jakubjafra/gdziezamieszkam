@@ -1,5 +1,5 @@
 * {
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 
 @gray-base: #000;
@@ -71,6 +71,21 @@ main {
     max-width: @main-width - @main-vertical-padding * 2;
 }
 
+h1 {
+    box-sizing: border-box;
+    position: relative;
+    font-weight: bold;
+    color: @main-color;
+
+
+    span {
+        //margin-left: 1px;
+        padding: 3px 5px;
+        color: black;
+        background-color: @main-color;
+    }
+}
+
 nav {
     position: fixed;
     top: 0;
@@ -83,22 +98,10 @@ nav {
     z-index: 1000;
 
     h1 {
-        box-sizing: border-box;
-        position: relative;
-        margin: 0;
         height: 50px;
+        margin: 0;
         padding: 12px;
         font-size: 24px;
-        font-weight: bold;
-        color: @main-color;
-
-
-        span {
-            //margin-left: 1px;
-            padding: 3px 5px;
-            color: black;
-            background-color: @main-color;
-        }
     }
 
     ul.mainMenu {
@@ -441,4 +444,101 @@ article.offer {
 
     padding: 2px 8px;
     border-radius: 0;
+}
+
+// ~~~
+
+.clear-margins {
+    margin: 0;
+}
+
+em {
+    font-style: normal;
+    background-color: @main-color;
+    padding: 2px;
+    font-weight: bold;
+}
+
+div.main {
+    h3 {
+        text-transform: uppercase;
+
+        small {
+            text-transform: none;
+        }
+
+        span {
+            border-bottom: 4px solid @main-color;
+        }
+    }
+
+    section {
+        position: relative;
+        width: 100vw;
+        height: auto;
+        min-height: 100vh;
+        padding: 20px 0;
+
+        &.section80 {
+            min-height: 80vh;
+        }
+
+        &.section20 {
+            min-height: 20vh;
+        }
+
+        &.section-auto {
+            min-height: initial;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        &.centerify {
+            display: table;
+            text-align: center;
+
+            & > div {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+
+        &.gray {
+            background-color: @gray-lighter;
+        }
+    }
+}
+
+#call-to-action {
+    display: block;
+    width: 457px;
+    background-color: @gray-lighter;
+    padding: 20px;
+    margin: 0 auto;
+
+    select, p {
+        display: inline-block;
+        margin: 0;
+    }
+
+    p {
+        padding: 0 15px;
+        font-size: 1.2em;
+        font-weight: bold;
+
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+
+    select {
+        width: 150px;
+    }
+
+    .btn {
+        margin: 10px 0 0;
+        font-size: 1.4em;
+    }
 }

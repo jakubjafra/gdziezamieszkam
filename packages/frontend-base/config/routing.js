@@ -3,8 +3,8 @@ Router.configure({
 });
 
 Router.route('/', function(){
-    this.redirect("offersList")
-});
+    this.render("index");
+}, { name: 'index', layoutTemplate: null });
 
 Router.route('/mieszkania/poznan/', function(){
     this.render("offersList");
