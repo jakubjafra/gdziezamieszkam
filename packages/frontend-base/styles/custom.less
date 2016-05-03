@@ -107,7 +107,7 @@ nav {
     ul.mainMenu {
         position: absolute;
         top: 0;
-        left: @aside-width;
+        left: @aside-width - 20px;
 
         margin: 0;
         //margin-left: @aside-width;
@@ -123,7 +123,7 @@ nav {
                 display: inline-block;
                 padding: 10px 20px;
                 border-bottom: 4px solid transparent;
-                height: 26px;
+                height: 50px;
 
                 &:hover {
                     border-bottom-color: @main-color;
@@ -224,7 +224,7 @@ a {
 }
 
 label {
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 .badge {
@@ -511,7 +511,7 @@ div.main {
     }
 }
 
-#call-to-action {
+#callToAction {
     display: block;
     width: 457px;
     background-color: @gray-lighter;
@@ -540,5 +540,11 @@ div.main {
     .btn {
         margin: 10px 0 0;
         font-size: 1.4em;
+    }
+}
+
+#subscribeForm {
+    .btn {
+        margin: 10px 0 0;
     }
 }

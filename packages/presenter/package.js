@@ -27,6 +27,7 @@ Package.onUse(function (api) {
     // ~~~
 
     api.addFiles([
+        'common/common.js',
         'common/sorting.js'
     ], ['client', 'server']);
 
@@ -49,4 +50,8 @@ Package.onUse(function (api) {
     api.addFiles([
         'server.js'
     ], ['server']);
+
+    api.export([
+        'Subscriptions'
+    ], ['client', 'server']);
 });

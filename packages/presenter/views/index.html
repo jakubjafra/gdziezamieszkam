@@ -1,10 +1,12 @@
 <template name="index">
+    {{> subscribeModal}}
+
     <div class="main">
         <section class="section80 centerify">
             <div style="padding-bottom: 5vh;">
                 <h1><span>gdziezamieszkam</span></h1>
                 <h3>
-                    Inteligentna wyszukiwarka mieszkań na wynajem<br>
+                    Wyszukiwarka mieszkań na wynajem<br>
                     <small>
                         Przeszukujemy Internet w poszukiwaniu ofert, a każdą z nich dokładnie analizujemy<br>
                         prezentując najważniejsze informacje na pierwszym planie.
@@ -58,13 +60,40 @@
     </div>
 </template>
 
+<template name="subscribeModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="subscribeModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Poinformujemy Cię, kiedy to będzie gotowe</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">
+                        <strong>Gdziezamieszkam</strong> jest w wersji alpha. Nie wszystko jeszcze działa.<br>
+                        Zapisz się a damy Ci znać kiedy zacznie.
+                    </p>
+                    <form id="subscribeForm">
+                        <label for="email">
+                            Email
+                        </label>
+                        <input type="text" id="email" class="form-control" placeholder="Email" />
+
+                        <input type="submit" value="Zapisz" class="btn btn-block btn-primary" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="callToActionForm">
-    <form id="call-to-action">
+    <form id="callToAction">
         <div>
             <p>Szukam</p>
             <select id="type" class="form-control">
-                <option>mieszkania</option>
-                <option>pokoju</option>
+                <option value="flat">mieszkania</option>
+                <option value="room">pokoju</option>
             </select>
             <p>w</p>
             <select id="city" class="form-control">
