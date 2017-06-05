@@ -12,7 +12,7 @@ Package.onUse(function (api) {
 
     api.use([
         'frontend-base',
-        'accounts-always',
+        // 'accounts-always',
         'data-base'
     ]);
 
