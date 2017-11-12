@@ -1,5 +1,5 @@
-gdziezamieszkam-v3
-==================
+gdziezamieszkam
+===============
 
 "Gdziezamieszkam" is a small scrapper and frontend for searching apartments for renting in Poznań, Poland. **Created out of frustration due to poor user experience while searching flats for rent** using OLX or Gumtree - for example price listed there is not full price, but only money for flat owner - but while renting there're more fixed fees. It's still usable, and offer some adventages over scraped sites with offers (like OLX or Gumtree), like:
 * finding **real street address** out of offer description text
@@ -16,6 +16,8 @@ Both OLX and Gumtree's Terms of use specify that using bots to scrap their data 
 
 Usage
 -----
+
+![Usage gif](https://github.com/khronedev/gdziezamieszkam/raw/master/showcase/gdziezamieszkam-v3.gif)
 
 ```
 docker-compose up -d mongo
