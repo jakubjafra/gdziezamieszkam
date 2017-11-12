@@ -115,7 +115,7 @@ Cords = (function(){
                 .forEach(pair => {
                     let region = pair.region;
                     region.index = parseInt(pair.index);
-                    
+
                     region.count = Offers.find({
                         'lastSeen.0': { $gte: moment().startOf('day').subtract(2, 'days').valueOf() },
                         'address.city': "Poznań",
@@ -168,6 +168,12 @@ Cords = (function(){
 if(Meteor.isServer) {
     Meteor.publish("regions", function(){
         return regions.find({});
+    });
+
+    Meteor.methods({
+        'update-regions': function(){
+            Cords.updateRegions();
+        }
     });
 
     SyncedCron.add({

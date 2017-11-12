@@ -2,6 +2,8 @@ Meteor.methods({
     "handle-offer": function(offerData){
         console.log("handle-offer", offerData.url);
 
+        console.log(offerData);
+
         let currDate = moment().startOf('day').valueOf();
 
         let offerDuplicate = Offers.findOne({
@@ -66,6 +68,9 @@ Meteor.methods({
 
         let geocodedRegion = Meteor.call("geocode-address", address);
 
+        if(!geocodedRegion)
+            return;
+
         offerData.cords = Cords.a2o(geocodedRegion.cords);
         offerData.cordsImportance = geocodedRegion.importance;
 
@@ -90,6 +95,7 @@ Meteor.methods({
         console.log("inserting offer...");
 
         Offers.insert(offerData);
+        Meteor.call("update-regions");
     },
 
     // tmp methods:

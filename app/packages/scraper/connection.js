@@ -29,7 +29,8 @@ Crawler = (function(){
                 Meteor.sleep(100);
 
                 let options = {
-                    timeout: 3000
+                    timeout: 3000,
+                    encoding: "utf8"
                 };
 
                 if(!noProxy){
@@ -60,4 +61,6 @@ SyncedCron.add({
 
 Meteor.startup(function(){
     SyncedCron.start();
+
+    Meteor.call("update-dictionaries");
 });

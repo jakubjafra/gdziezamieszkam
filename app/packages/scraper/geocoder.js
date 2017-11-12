@@ -2,6 +2,8 @@ let GeocoderResults = new Mongo.Collection("geocoder_results");
 
 Meteor.methods({
     "geocode-address": function(address){
+        console.log(address);
+
         let possibleAddresses = [];
 
         function pushPossibleAddress(city, importance, query){
@@ -19,34 +21,43 @@ Meteor.methods({
         pushPossibleAddress(address.city, 2, address.district);
         pushPossibleAddress(address.city, 1);
 
+        if(possibleAddresses.length === 0) {
+            console.log("* no address found in here....");
+            return;
+        }
+
         for(let i = 0; i < possibleAddresses.length; i++){
-            let result = Meteor.call("call-geocoder", possibleAddresses[i].query);
+            try {
+                const result = Meteor.call("call-geocoder", possibleAddresses[i].query);
 
-            if(result === null)
+                if(result === null)
+                    continue;
+
+                return {
+                    cords: result,
+                    importance: possibleAddresses[i].importance
+                };
+            } catch(e) {
                 continue;
-
-            return {
-                cords: result,
-                importance: possibleAddresses[i].importance
-            };
+            }
         }
 
         // założenie jest takie, że nigdy nie powinno zwrócić null...
         return null;
     },
     "call-geocoder": function(address){
-        let result = GeocoderResults.findOne({
+        const result = GeocoderResults.findOne({
             address
         });
 
         if(result === undefined){
-            let geocoded = Crawler.get("http://nominatim.openstreetmap.org/search?format=json&q=" + address);
-            let data = getMostAccurateCords(geocoded.data);
+            const geocoded = Crawler.get("http://nominatim.openstreetmap.org/search?format=json&q=" + encodeURIComponent(address));
+            const data = getMostAccurateCords(geocoded.data);
 
             if(data === undefined)
                 return null;
 
-            let cords = [ data.lat, data.lon ];
+            const cords = [ data.lat, data.lon ];
 
             GeocoderResults.insert({
                 address,
